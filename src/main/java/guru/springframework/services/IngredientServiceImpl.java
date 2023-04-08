@@ -87,8 +87,10 @@ public class IngredientServiceImpl implements IngredientService {
             } else {
                 //add new Ingredient
                 Ingredient ingredient = ingredientCommandToIngredient.convert(command);
-                ingredient.setRecipe(recipe);
-                recipe.addIngredient(ingredient);
+                if (ingredient != null) {
+                    ingredient.setRecipe(recipe);
+                    recipe.addIngredient(ingredient);
+                }
             }
 
             Recipe savedRecipe = recipeRepository.save(recipe);
